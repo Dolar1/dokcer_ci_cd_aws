@@ -9,7 +9,18 @@ befroe_install:
 
 script:
   - docker run -e CI=true dolar/dokcer_ci_cd_aws npm run test
-#
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "ci_cd_aws"
+  env: "CiCdAws-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-700730497016"
+  bucket_path: "ci_cd_aws"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
 #   =========================
 #   EARLIER....
 # script:
