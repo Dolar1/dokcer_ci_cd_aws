@@ -1,0 +1,19 @@
+sudo: required
+services:
+  - docker
+
+befroe_install:
+  - docker build -t dolar/dokcer_ci_cd_aws -f Dockerfile.dev
+
+script:
+  - docker run -e CI=true dolar/dokcer_ci_cd_aws npm run test
+#
+#   =========================
+#   EARLIER....
+# script:
+#     - docker run USERNAME/docker-react npm run test -- --coverage
+
+#   CHANGED TO....
+# script:
+#     - docker run -e CI=true USERNAME/docker-react npm run test
+
