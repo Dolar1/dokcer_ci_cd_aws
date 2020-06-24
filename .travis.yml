@@ -1,9 +1,11 @@
+language: generic
 sudo: required
+
 services:
   - docker
 
 befroe_install:
-  - docker build -t dolar/dokcer_ci_cd_aws -f Dockerfile.dev
+  - docker build -t dolar/dokcer_ci_cd_aws -f Dockerfile.dev .
 
 script:
   - docker run -e CI=true dolar/dokcer_ci_cd_aws npm run test
@@ -17,3 +19,7 @@ script:
 # script:
 #     - docker run -e CI=true USERNAME/docker-react npm run test
 
+# ========================================
+# STEPS TO RUN TESTS..........
+# docker run -it dolar/react_ci_cd npm run test
+# ANOTHER WAY...........
