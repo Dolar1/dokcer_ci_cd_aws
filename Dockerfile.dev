@@ -1,0 +1,26 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+COPY . .
+
+CMD ["npm", "run",  "start"]
+
+
+
+
+# to build it....
+# docker build -t dolar/react -f Dockerfile.dev .
+# or without tagging...
+# docker build -f Dockerfile.dev .
+
+
+# TO RUN IT
+# docker run -it -p 3000:3000 23b9fd3ab5f3 
+
+# TO RUN VIA MAPPING THE THING WHILE HAVING ALL THE DEPENDENCIES IN THE CONTAINER....
+# THIS HELP IN ACTUALLY HAVING THE FILES IN SYSTEM AND MAP IT TO CONTAINER WITHOUT ACTUALLY COPYING....
+
+# docker run -p 3000:3000 -v /app/node_modules -v$(pwd):/app dolar/react

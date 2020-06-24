@@ -1,0 +1,30 @@
+version: "3"
+services:
+  web:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
+
+      # this process wil only be responsibl to run the test from the react....file
+  web_test:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
+###################################
+# docker-compose up
+# this will run aloong with test in the react file...
+
+# docker ps to get al the process id's
+# docker exec -it e52ba71f8902 sh
+# to run the shell in tht container....
